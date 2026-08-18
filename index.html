@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bangkok Brain Bridge 2027 — Chulalongkorn University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFFFFF;
+    --bg-alt: #F4F3F0;
+    --line: #E4E2DD;
+    --ink: #1D1C1A;
+    --muted: #6B6A66;
+    --muted-2: #8B8A85;
+    --plum: #6B5B8E;
+    --steel: #4E6E82;
+    --brick: #A2543F;
+    --black: #14130F;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0; background: var(--bg); color: var(--ink);
+    font-family:'Inter', sans-serif; line-height:1.65; -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; font-weight:600; color: var(--black); }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color: var(--steel); text-decoration:none; }
+  a:hover{ text-decoration: underline; }
+  .wrap{ max-width: 1080px; margin:0 auto; padding: 0 28px; }
+  :focus-visible{ outline: 2px solid var(--steel); outline-offset: 3px; }
+
+  /* NAV */
+  nav{ position: sticky; top:0; z-index:50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--line); }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .brand{ font-family:'Playfair Display', serif; font-weight:600; font-size:17px; letter-spacing:0.01em; }
+  .navlinks{ display:flex; gap:30px; }
+  .navlinks a{ color: var(--muted); font-size:13px; letter-spacing:0.03em; text-transform:uppercase; font-weight:500; }
+  .navlinks a:hover{ color: var(--ink); text-decoration:none; }
+  .nav-cta{ background: var(--black); color:#fff; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600; padding:11px 20px; }
+  .nav-cta:hover{ text-decoration:none; opacity:0.85; }
+  @media (max-width:760px){ .navlinks{ display:none; } }
+
+  /* HERO */
+  .hero{
+    position:relative; color:#fff; text-align:center;
+    padding: 120px 28px 100px;
+    background: linear-gradient(180deg, #3E3654 0%, #5C4E6B 32%, #A87E82 62%, #D9A98C 100%);
+    overflow:hidden;
+  }
+  .hero::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:38%;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(20,19,15,0.35) 100%);
+  }
+  .roofline{ position:absolute; left:0; right:0; bottom:0; width:100%; opacity:0.55; }
+  .hero-content{ position:relative; z-index:2; max-width: 760px; margin:0 auto; }
+  .kicker{ font-size:12px; letter-spacing:0.18em; text-transform:uppercase; font-weight:600; opacity:0.85; margin-bottom:22px; }
+  .hero h1{ color:#fff; font-size: clamp(44px,6.5vw,68px); font-weight:600; line-height:1.05; }
+  .hero .sub{ margin-top:20px; font-size:16px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600; opacity:0.92; }
+  .hero .dates{ margin-top:10px; font-size:15px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; opacity:0.85; }
+  .hero .venue-line{ margin-top: 34px; font-size:14px; line-height:1.8; opacity:0.9; font-weight:500; }
+  .hero-actions{ margin-top: 38px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-black{
+    background: var(--black); color:#fff; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    font-weight:700; padding:15px 28px; border:none; cursor:pointer; font-family:'Inter';
+  }
+  .btn-black:hover{ opacity:0.85; text-decoration:none; }
+  .btn-outline{
+    border: 1px solid rgba(255,255,255,0.55); color:#fff; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    font-weight:700; padding:15px 28px;
+  }
+  .btn-outline:hover{ background: rgba(255,255,255,0.1); text-decoration:none; }
+
+  /* SECTIONS */
+  section{ padding: 84px 0; }
+  section.alt{ background: var(--bg-alt); }
+  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color: var(--steel); margin-bottom:16px; text-align:center; }
+  .section-title{ font-size: clamp(28px,3.6vw,38px); text-align:center; max-width:640px; margin: 0 auto; }
+  .section-desc{ color: var(--muted); text-align:center; max-width:560px; margin: 16px auto 0; font-size:15px; }
+
+  /* DAYS */
+  .days{ display:grid; grid-template-columns:1fr 1fr; gap:1px; margin-top:48px; background: var(--line); border:1px solid var(--line); }
+  @media (max-width:720px){ .days{ grid-template-columns:1fr; } }
+  .day-card{ background: var(--bg); padding: 34px; text-align:center; }
+  .day-card .tag{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; }
+  .day-card.symposium .tag{ color: var(--brick); }
+  .day-card.workshop .tag{ color: var(--steel); }
+  .day-card h3{ font-size:22px; margin-top:12px; }
+  .day-card .date{ color: var(--muted); font-size:13px; margin-top:8px; }
+  .day-card .desc{ margin-top:14px; color: var(--muted-2); font-size:14px; }
+
+  /* SPEAKERS */
+  .speakers{ margin-top:52px; display:grid; grid-template-columns: repeat(3,1fr); gap:36px; }
+  @media (max-width:900px){ .speakers{ grid-template-columns:1fr; max-width:380px; margin:52px auto 0; } }
+  .speaker-card{ text-align:center; }
+  .photo-frame{
+    width:132px; height:132px; border-radius:50%; margin:0 auto 22px;
+    background: var(--bg-alt); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+    color: var(--muted-2); font-size:11px; letter-spacing:0.05em; text-transform:uppercase;
+  }
+  .speaker-photo{ width:100%; height:100%; object-fit:cover; }
+  .speaker-card:nth-child(1) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--brick); }
+  .speaker-card:nth-child(2) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--steel); }
+  .speaker-card:nth-child(3) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--plum); }
+  .speaker-label{ font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; }
+  .speaker-card:nth-child(1) .speaker-label{ color: var(--brick); }
+  .speaker-card:nth-child(2) .speaker-label{ color: var(--steel); }
+  .speaker-card:nth-child(3) .speaker-label{ color: var(--plum); }
+  .speaker-card h3{ font-size:23px; margin-top:12px; }
+  .speaker-card .talk{ margin-top:10px; font-size:15px; font-weight:600; color: var(--ink); }
+  .speaker-card .affil{ margin-top:8px; font-size:13px; color: var(--muted); }
+
+  /* ORAL SPEAKERS */
+  .oral-list{ margin-top:48px; display:grid; grid-template-columns:1fr 1fr; gap:4px 48px; }
+  @media (max-width:720px){ .oral-list{ grid-template-columns:1fr; } }
+  .oral-item{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:16px 0; border-bottom:1px solid var(--line); }
+  .oral-item .name{ font-weight:600; color: var(--ink); font-size:15px; }
+  .oral-item .affil{ color: var(--muted); font-size:13px; text-align:right; white-space:nowrap; }
+  @media (max-width:480px){ .oral-item{ flex-direction:column; gap:4px; } .oral-item .affil{ text-align:left; white-space:normal; } }
+
+  /* AGENDA */
+  .agenda-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:52px; }
+  @media (max-width:720px){ .agenda-grid{ grid-template-columns:1fr; } }
+  .agenda-col h3{ font-size:16px; letter-spacing:0.02em; margin-bottom:18px; padding-bottom:12px; border-bottom:2px solid var(--ink); }
+  .slot{ display:flex; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); font-size:14px; color: var(--muted); align-items:baseline; }
+  .slot .time{ font-family:'IBM Plex Mono'; color: var(--ink); min-width:60px; font-size:13px; }
+  .slot .tbd{ margin-left:auto; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color: var(--muted-2); border:1px dashed var(--muted-2); padding:3px 8px; }
+
+  /* VENUE */
+  .venue-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; margin-top:52px; align-items:start; }
+  @media (max-width:800px){ .venue-grid{ grid-template-columns:1fr; } }
+  .venue-card h3{ font-size:22px; margin-bottom:14px; }
+  .venue-card p{ color: var(--muted); font-size:14px; }
+  .venue-card .links{ margin-top:18px; display:flex; flex-direction:column; gap:8px; font-size:14px; }
+  .sponsor-title{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; color: var(--muted); }
+  .sponsors-row{ margin-top:22px; display:flex; gap:44px; align-items:center; flex-wrap:wrap; }
+  .sponsors-row span{ font-family:'Playfair Display'; font-weight:600; font-size:21px; color: var(--ink); }
+
+  /* REGISTER */
+  .register-wrap{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; margin-top:48px; }
+  @media (max-width:860px){ .register-wrap{ grid-template-columns:1fr; } }
+  .register-copy{ text-align:left; }
+  .notice{ font-size:13px; color: var(--muted); border-left:2px solid var(--brick); padding-left:16px; margin-top:24px; }
+  form{ background: var(--bg-alt); border:1px solid var(--line); padding:34px; }
+  .field{ margin-bottom:18px; }
+  .field label{ display:block; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; font-weight:600; color: var(--muted); margin-bottom:8px; }
+  .field input, .field select{
+    width:100%; background:#fff; border:1px solid var(--line); color: var(--ink);
+    padding:12px 13px; font-family:'Inter'; font-size:14px;
+  }
+  .field input:focus, .field select:focus{ border-color: var(--steel); }
+  .checks{ display:flex; gap:22px; flex-wrap:wrap; }
+  .check-item{ display:flex; align-items:center; gap:8px; font-size:14px; color: var(--ink); }
+  .check-item input{ width:auto; accent-color: var(--steel); }
+  .submit-row{ margin-top:8px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .form-note{ font-size:12px; color: var(--muted); }
+  #form-success{ display:none; color: var(--steel); font-size:13px; margin-top:14px; font-weight:600; }
+
+  footer{ padding: 44px 0; border-top:1px solid var(--line); }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+  footer .foot-text{ font-size:12px; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Bangkok Brain Bridge 2027</div>
+    <div class="navlinks">
+      <a href="#speakers">Speakers</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#venue">Venue</a>
+      <a href="#register">Register</a>
+    </div>
+    <a class="nav-cta" href="#register">Pre-register</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="roofline" viewBox="0 0 1200 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,160 0,90 120,40 240,90 240,160" fill="#221E33"/>
+    <polygon points="220,160 220,70 380,10 540,70 540,160" fill="#2A2440"/>
+    <polygon points="520,160 520,95 640,50 760,95 760,160" fill="#221E33"/>
+    <polygon points="740,160 740,65 900,5 1060,65 1060,160" fill="#2A2440"/>
+    <polygon points="1040,160 1040,90 1160,45 1200,60 1200,160" fill="#221E33"/>
+  </svg>
+  <div class="hero-content">
+    <div class="kicker">Faculty of Medicine · Chulalongkorn University</div>
+    <h1>Bangkok Brain Bridge 2027</h1>
+    <div class="sub">From Brain Image Acquisition to Neurointervention</div>
+    <div class="dates">29–30 January 2027 · Free Admission</div>
+    <div class="venue-line">
+      Rattana Wittayapat Building<br>
+      Faculty of Medicine, Chulalongkorn University<br>
+      Bangkok, Thailand
+    </div>
+    <div class="hero-actions">
+      <button class="btn-black" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Pre-register interest</button>
+      <a class="btn-outline" href="#speakers">View keynote speakers</a>
+    </div>
+  </div>
+</section>
+
+<section id="speakers">
+  <div class="wrap">
+    <div class="eyebrow">Keynote Speakers</div>
+    <h2 class="section-title">Three researchers shaping the field of functional neuroimaging</h2>
+    <p class="section-desc">All three keynotes are confirmed for the Friday symposium. Photos and full abstracts will be added as they're received.</p>
+
+    <div class="speakers">
+      <div class="speaker-card">
+        <div class="photo-frame"><img src="images/glasser_sq.jpg" alt="Matthew Glasser" class="speaker-photo"></div>
+        <div class="speaker-label">Keynote</div>
+        <h3>Matthew Glasser</h3>
+        <div class="talk">From Why to How: Human Connectome Acquisition &amp; Surface Analysis</div>
+        <div class="affil">Washington University in St. Louis · Neuroradiology</div>
+      </div>
+      <div class="speaker-card">
+        <div class="photo-frame"><img src="images/yeo_sq.jpg" alt="B.T. Thomas Yeo" class="speaker-photo"></div>
+        <div class="speaker-label">Keynote</div>
+        <h3>B.T. Thomas Yeo</h3>
+        <div class="talk">From Group to Individual: Organization of Large Scale Networks and the Predictive Power of Individual Networks</div>
+        <div class="affil">National University of Singapore · Electrical &amp; Computer Engineering</div>
+      </div>
+      <div class="speaker-card">
+        <div class="photo-frame"><img src="images/robin-cash-600x500-1-Background-Removed.png" alt="Robin Cash" class="speaker-photo"></div>
+        <div class="speaker-label">Keynote</div>
+        <h3>Robin Cash</h3>
+        <div class="talk">From Map to Target: Connectome-Guided Precision Neurointervention</div>
+        <div class="affil">University of Melbourne · Melbourne Neuropsychiatry Centre</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="oral-speakers" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Oral Presentations</div>
+    <h2 class="section-title">Friday oral speaker line-up</h2>
+    <p class="section-desc">Following the keynotes, these speakers will present on Day 01 of the symposium. Talk titles and timing to follow.</p>
+    <div class="oral-list">
+      <div class="oral-item"><span class="name">Chaipat Chunharas</span><span class="affil">Chulalongkorn University</span></div>
+      <div class="oral-item"><span class="name">Sedthapong Chunamchai</span><span class="affil">Chulalongkorn University</span></div>
+      <div class="oral-item"><span class="name">Sasin Treeratana</span><span class="affil">Chulalongkorn University</span></div>
+      <div class="oral-item"><span class="name">Setthanan Jarukasemkit</span><span class="affil">Washington University / Ramathibodi Hospital</span></div>
+      <div class="oral-item"><span class="name">Poosanu Thanapornsangsuth</span><span class="affil">UCSF / Chulalongkorn University</span></div>
+      <div class="oral-item"><span class="name">Ruedeerat Keerativittayayut</span><span class="affil">Chulabhorn</span></div>
+      <div class="oral-item"><span class="name">Uten Yarach</span><span class="affil">Chiang Mai University</span></div>
+      <div class="oral-item"><span class="name">Chanon Ngamsombat</span><span class="affil">Siriraj Hospital</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Schedule</div>
+    <h2 class="section-title">Two days, two formats</h2>
+    <div class="days">
+      <div class="day-card symposium">
+        <div class="tag">Day 01 · Symposium</div>
+        <h3>Friday, 29 January 2027</h3>
+        <div class="date">Rattana Wittayapat Building, Faculty of Medicine, MDCU</div>
+        <div class="desc">Keynote talks and discussion, open to all registrants — free admission. Expected capacity: 50–100 attendees.</div>
+      </div>
+      <div class="day-card workshop">
+        <div class="tag">Day 02 · Workshop</div>
+        <h3>Saturday, 30 January 2027</h3>
+        <div class="date">Rattana Wittayapat Building, Faculty of Medicine, MDCU</div>
+        <div class="desc">Hands-on fMRI workshop. Expected capacity: 50–60 attendees.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="agenda">
+  <div class="wrap">
+    <div class="eyebrow">Agenda</div>
+    <h2 class="section-title">Program details are still being finalized</h2>
+    <p class="section-desc">Session times below are placeholders and will be updated as the schedule is confirmed.</p>
+    <div class="agenda-grid">
+      <div class="agenda-col">
+        <h3>Fri 29 Jan — Symposium</h3>
+        <div class="slot"><span class="time">09:00</span><span>Registration &amp; opening remarks</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">09:30</span><span>Keynote — M. Glasser</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">11:00</span><span>Keynote — B.T.T. Yeo</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">13:30</span><span>Keynote — R. Cash</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">15:00</span><span>Panel discussion</span><span class="tbd">TBD</span></div>
+      </div>
+      <div class="agenda-col">
+        <h3>Sat 30 Jan — Workshop</h3>
+        <div class="slot"><span class="time">09:00</span><span>Workshop check-in</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">09:30</span><span>Session I</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">11:30</span><span>Session II</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">14:00</span><span>Hands-on practicum</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">16:00</span><span>Closing</span><span class="tbd">TBD</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="venue">
+  <div class="wrap">
+    <div class="eyebrow">Venue</div>
+    <h2 class="section-title">Rattana Wittayapat Building, MDCU</h2>
+    <div class="venue-grid">
+      <div class="venue-card">
+        <h3>Faculty of Medicine, Chulalongkorn University</h3>
+        <p>Rattana Wittayapat Building, Bangkok, Thailand.<br>Both the Friday symposium and Saturday workshop are held at the same location.</p>
+        <div class="links">
+          <a href="https://www.md.chula.ac.th/en/" target="_blank" rel="noopener">Faculty of Medicine, MDCU website →</a>
+          <a href="https://maps.app.goo.gl/VDDA3hPvNCUtBKLn8" target="_blank" rel="noopener">View on map →</a>
+        </div>
+      </div>
+      <div class="venue-card">
+        <div class="sponsor-title">Sponsors</div>
+        <div class="sponsors-row">
+          <span>PMU-B</span>
+          <span>Siemens</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="register">
+  <div class="wrap">
+    <div class="eyebrow">Registration</div>
+    <h2 class="section-title">Registration isn't open yet — pre-register to be first in line</h2>
+    <div class="register-wrap">
+      <div class="register-copy">
+        <p class="section-desc" style="text-align:left; margin:0;">Admission is free for both days. We're collecting early interest now so we can notify you the moment full registration opens and give organizers an accurate headcount for planning.</p>
+        <p class="notice">This form is a pre-registration of interest, not a confirmed ticket. You'll receive a follow-up email once registration officially opens.</p>
+      </div>
+      <form id="pre-register-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field">
+          <label for="affiliation">Affiliation</label>
+          <input type="text" id="affiliation" name="affiliation" placeholder="University, hospital, or organization">
+        </div>
+        <div class="field">
+          <label for="dietary">Dietary restrictions</label>
+          <select id="dietary" name="dietary">
+            <option value="none">None</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="halal">Halal</option>
+            <option value="other">Other (I'll follow up by email)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Session preference</label>
+          <div class="checks">
+            <label class="check-item"><input type="checkbox" name="session" value="Friday Symposium"> Fri — Symposium</label>
+            <label class="check-item"><input type="checkbox" name="session" value="Saturday Workshop"> Sat — Workshop</label>
+          </div>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn-black">Notify me</button>
+          <span class="form-note">No payment required — this event is free.</span>
+        </div>
+        <div id="form-success">✓ Thanks — you're on the list. We'll email you when registration opens.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-text">© 2027 · Faculty of Medicine, Chulalongkorn University</div>
+    <div class="foot-text">Supported by PMU-B &amp; Siemens</div>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('pre-register-form');
+  const success = document.getElementById('form-success');
+  form.addEventListener('submit', function(e){
+    if (form.action.includes('YOUR_FORM_ID')) {
+      e.preventDefault();
+      alert('Registration form endpoint not configured yet. Replace YOUR_FORM_ID in the form action with your real Formspree endpoint.');
+      return;
+    }
+    e.preventDefault();
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(res => {
+      if (res.ok) { form.reset(); success.style.display = 'block'; }
+      else { alert('Something went wrong — please try again.'); }
+    }).catch(() => alert('Something went wrong — please try again.'));
+  });
+</script>
+
+</body>
+</html>
