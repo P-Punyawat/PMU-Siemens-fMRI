@@ -42,7 +42,24 @@
   .navlinks a:hover{ color: var(--ink); text-decoration:none; }
   .nav-cta{ background: var(--black); color:#fff; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600; padding:11px 20px; }
   .nav-cta:hover{ text-decoration:none; opacity:0.85; }
-  @media (max-width:760px){ .navlinks{ display:none; } }
+  .nav-toggle-input{ display:none; }
+  .hamburger{ display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+  .hamburger span{ width:22px; height:2px; background: var(--ink); display:block; transition: transform 0.2s ease, opacity 0.2s ease; }
+  @media (max-width:760px){
+    .hamburger{ display:flex; }
+    .nav-cta{ display:none; }
+    .navlinks{
+      display:none; position:absolute; top:68px; left:0; right:0; z-index:49;
+      flex-direction:column; gap:0; background:#fff; border-bottom:1px solid var(--line);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.06);
+    }
+    .navlinks a{ padding:16px 28px; border-bottom:1px solid var(--line); }
+    .navlinks a:last-child{ border-bottom:none; }
+    .nav-toggle-input:checked ~ .navlinks{ display:flex; }
+    .nav-toggle-input:checked ~ .hamburger span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+    .nav-toggle-input:checked ~ .hamburger span:nth-child(2){ opacity:0; }
+    .nav-toggle-input:checked ~ .hamburger span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+  }
 
   /* HERO */
   .hero{
@@ -172,6 +189,8 @@
 <nav>
   <div class="wrap">
     <div class="brand">Bangkok Brain Bridge 2027</div>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></label>
     <div class="navlinks">
       <a href="#speakers">Speakers</a>
       <a href="#agenda">Agenda</a>
@@ -385,6 +404,11 @@
 </footer>
 
 <script>
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('.navlinks a').forEach(link => {
+    link.addEventListener('click', () => { navToggle.checked = false; });
+  });
+
   const form = document.getElementById('pre-register-form');
   const success = document.getElementById('form-success');
   form.addEventListener('submit', function(e){
