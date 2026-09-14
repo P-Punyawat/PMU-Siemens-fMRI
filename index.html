@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bangkok Brain Bridge 2027 — Chulalongkorn University</title>
+<title>Bangkok Brain Imaging Symposium (B-BIS) — Chulalongkorn University</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #FFFFFF;
-    --bg-alt: #F4F3F0;
-    --line: #E4E2DD;
-    --ink: #1D1C1A;
-    --muted: #6B6A66;
-    --muted-2: #8B8A85;
-    --plum: #6B5B8E;
-    --steel: #4E6E82;
-    --brick: #A2543F;
-    --black: #14130F;
+    --bg-alt: #E6EBEB;
+    --line: #D8DFE2;
+    --ink: #0D1B2A;
+    --muted: #64707D;
+    --muted-2: #8B95A0;
+    --navy2: #1B2C4B;
+    --turquoise: #00A99D;
+    --gold: #D4AF37;
+    --navy: #0D1B2A;
   }
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
@@ -26,21 +26,23 @@
     margin:0; background: var(--bg); color: var(--ink);
     font-family:'Inter', sans-serif; line-height:1.65; -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3{ font-family:'Playfair Display', serif; margin:0; font-weight:600; color: var(--black); }
-  .mono{ font-family:'IBM Plex Mono', monospace; }
-  a{ color: var(--steel); text-decoration:none; }
+  h1,h2,h3{ font-family:'Inter', sans-serif; margin:0; font-weight:700; color: var(--navy); }
+  .mono{ font-family:'Inter', sans-serif; }
+  a{ color: var(--turquoise); text-decoration:none; }
   a:hover{ text-decoration: underline; }
   .wrap{ max-width: 1080px; margin:0 auto; padding: 0 28px; }
-  :focus-visible{ outline: 2px solid var(--steel); outline-offset: 3px; }
+  :focus-visible{ outline: 2px solid var(--turquoise); outline-offset: 3px; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
   /* NAV */
   nav{ position: sticky; top:0; z-index:50; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--line); }
   nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:68px; }
-  .brand{ font-family:'Playfair Display', serif; font-weight:600; font-size:17px; letter-spacing:0.01em; }
+  .brand{ display:flex; align-items:center; }
+  .brand-primary{ display:block; }
   .navlinks{ display:flex; gap:30px; }
   .navlinks a{ color: var(--muted); font-size:13px; letter-spacing:0.03em; text-transform:uppercase; font-weight:500; }
   .navlinks a:hover{ color: var(--ink); text-decoration:none; }
-  .nav-cta{ background: var(--black); color:#fff; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600; padding:11px 20px; }
+  .nav-cta{ background: var(--navy); color:#fff; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; font-weight:600; padding:11px 20px; }
   .nav-cta:hover{ text-decoration:none; opacity:0.85; }
   .nav-toggle-input{ display:none; }
   .hamburger{ display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
@@ -65,13 +67,15 @@
   .hero{
     position:relative; color:#fff; text-align:center;
     padding: 120px 28px 100px;
-    background: linear-gradient(180deg, #3E3654 0%, #5C4E6B 32%, #A87E82 62%, #D9A98C 100%);
+    background: linear-gradient(180deg, #0D1B2A 0%, #1B2C4B 55%, #0F3A45 100%);
     overflow:hidden;
   }
   .hero::after{
     content:''; position:absolute; left:0; right:0; bottom:0; height:38%;
-    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(20,19,15,0.35) 100%);
+    background: linear-gradient(180deg, rgba(0,169,157,0) 0%, rgba(0,169,157,0.16) 100%);
   }
+  .hero-mark{ margin:0 auto 26px; }
+  .hero .btn-black{ background: var(--turquoise); color: var(--navy); }
   .roofline{ position:absolute; left:0; right:0; bottom:0; width:100%; opacity:0.55; }
   .hero-content{ position:relative; z-index:2; max-width: 760px; margin:0 auto; }
   .kicker{ font-size:12px; letter-spacing:0.18em; text-transform:uppercase; font-weight:600; opacity:0.85; margin-bottom:22px; }
@@ -81,7 +85,7 @@
   .hero .venue-line{ margin-top: 34px; font-size:14px; line-height:1.8; opacity:0.9; font-weight:500; }
   .hero-actions{ margin-top: 38px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
   .btn-black{
-    background: var(--black); color:#fff; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    background: var(--navy); color:#fff; font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
     font-weight:700; padding:15px 28px; border:none; cursor:pointer; font-family:'Inter';
   }
   .btn-black:hover{ opacity:0.85; text-decoration:none; }
@@ -94,7 +98,7 @@
   /* SECTIONS */
   section{ padding: 84px 0; }
   section.alt{ background: var(--bg-alt); }
-  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color: var(--steel); margin-bottom:16px; text-align:center; }
+  .eyebrow{ font-size:12px; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; color: var(--turquoise); margin-bottom:16px; text-align:center; }
   .section-title{ font-size: clamp(28px,3.6vw,38px); text-align:center; max-width:640px; margin: 0 auto; }
   .section-desc{ color: var(--muted); text-align:center; max-width:560px; margin: 16px auto 0; font-size:15px; }
 
@@ -103,8 +107,8 @@
   @media (max-width:720px){ .days{ grid-template-columns:1fr; } }
   .day-card{ background: var(--bg); padding: 34px; text-align:center; }
   .day-card .tag{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; }
-  .day-card.symposium .tag{ color: var(--brick); }
-  .day-card.workshop .tag{ color: var(--steel); }
+  .day-card.symposium .tag{ color: var(--gold); }
+  .day-card.workshop .tag{ color: var(--turquoise); }
   .day-card h3{ font-size:22px; margin-top:12px; }
   .day-card .date{ color: var(--muted); font-size:13px; margin-top:8px; }
   .day-card .desc{ margin-top:14px; color: var(--muted-2); font-size:14px; }
@@ -120,13 +124,13 @@
     color: var(--muted-2); font-size:11px; letter-spacing:0.05em; text-transform:uppercase;
   }
   .speaker-photo{ width:100%; height:100%; object-fit:cover; }
-  .speaker-card:nth-child(1) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--brick); }
-  .speaker-card:nth-child(2) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--steel); }
-  .speaker-card:nth-child(3) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--plum); }
+  .speaker-card:nth-child(1) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--gold); }
+  .speaker-card:nth-child(2) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--turquoise); }
+  .speaker-card:nth-child(3) .photo-frame{ box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--navy2); }
   .speaker-label{ font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; }
-  .speaker-card:nth-child(1) .speaker-label{ color: var(--brick); }
-  .speaker-card:nth-child(2) .speaker-label{ color: var(--steel); }
-  .speaker-card:nth-child(3) .speaker-label{ color: var(--plum); }
+  .speaker-card:nth-child(1) .speaker-label{ color: var(--gold); }
+  .speaker-card:nth-child(2) .speaker-label{ color: var(--turquoise); }
+  .speaker-card:nth-child(3) .speaker-label{ color: var(--navy2); }
   .speaker-card h3{ font-size:23px; margin-top:12px; }
   .speaker-card .talk{ margin-top:10px; font-size:15px; font-weight:600; color: var(--ink); }
   .speaker-card .affil{ margin-top:8px; font-size:13px; color: var(--muted); }
@@ -143,9 +147,14 @@
   .agenda-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:52px; }
   @media (max-width:720px){ .agenda-grid{ grid-template-columns:1fr; } }
   .agenda-col h3{ font-size:16px; letter-spacing:0.02em; margin-bottom:18px; padding-bottom:12px; border-bottom:2px solid var(--ink); }
-  .slot{ display:flex; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); font-size:14px; color: var(--muted); align-items:baseline; }
-  .slot .time{ font-family:'IBM Plex Mono'; color: var(--ink); min-width:60px; font-size:13px; }
+  .slot{ display:flex; gap:16px; padding:14px 0; border-bottom:1px solid var(--line); font-size:14px; color: var(--muted); align-items:flex-start; }
+  .slot .time{ font-family:'Inter'; font-weight:600; color: var(--ink); min-width:92px; font-size:13px; padding-top:1px; }
   .slot .tbd{ margin-left:auto; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color: var(--muted-2); border:1px dashed var(--muted-2); padding:3px 8px; }
+  .slot .session{ flex:1; }
+  .slot .session .title{ font-weight:600; color: var(--ink); font-size:14px; }
+  .slot .session .speaker{ margin-top:3px; font-size:12px; color: var(--muted); }
+  .slot.break{ color: var(--muted-2); }
+  .slot.keynote{ background: var(--bg-alt); margin:0 -16px; padding:14px 16px; border-bottom:1px solid var(--line); }
 
   /* VENUE */
   .venue-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; margin-top:52px; align-items:start; }
@@ -155,13 +164,13 @@
   .venue-card .links{ margin-top:18px; display:flex; flex-direction:column; gap:8px; font-size:14px; }
   .sponsor-title{ font-size:11px; letter-spacing:0.12em; text-transform:uppercase; font-weight:700; color: var(--muted); }
   .sponsors-row{ margin-top:22px; display:flex; gap:44px; align-items:center; flex-wrap:wrap; }
-  .sponsors-row span{ font-family:'Playfair Display'; font-weight:600; font-size:21px; color: var(--ink); }
+  .sponsors-row span{ font-family:'Inter'; font-weight:700; font-size:21px; color: var(--ink); }
 
   /* REGISTER */
   .register-wrap{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:52px; margin-top:48px; }
   @media (max-width:860px){ .register-wrap{ grid-template-columns:1fr; } }
   .register-copy{ text-align:left; }
-  .notice{ font-size:13px; color: var(--muted); border-left:2px solid var(--brick); padding-left:16px; margin-top:24px; }
+  .notice{ font-size:13px; color: var(--muted); border-left:2px solid var(--gold); padding-left:16px; margin-top:24px; }
   form{ background: var(--bg-alt); border:1px solid var(--line); padding:34px; }
   .field{ margin-bottom:18px; }
   .field label{ display:block; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; font-weight:600; color: var(--muted); margin-bottom:8px; }
@@ -169,13 +178,13 @@
     width:100%; background:#fff; border:1px solid var(--line); color: var(--ink);
     padding:12px 13px; font-family:'Inter'; font-size:14px;
   }
-  .field input:focus, .field select:focus{ border-color: var(--steel); }
+  .field input:focus, .field select:focus{ border-color: var(--turquoise); }
   .checks{ display:flex; gap:22px; flex-wrap:wrap; }
   .check-item{ display:flex; align-items:center; gap:8px; font-size:14px; color: var(--ink); }
-  .check-item input{ width:auto; accent-color: var(--steel); }
+  .check-item input{ width:auto; accent-color: var(--turquoise); }
   .submit-row{ margin-top:8px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
   .form-note{ font-size:12px; color: var(--muted); }
-  #form-success{ display:none; color: var(--steel); font-size:13px; margin-top:14px; font-weight:600; }
+  #form-success{ display:none; color: var(--turquoise); font-size:13px; margin-top:14px; font-weight:600; }
 
   footer{ padding: 44px 0; border-top:1px solid var(--line); }
   footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; }
@@ -188,7 +197,9 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand">Bangkok Brain Bridge 2027</div>
+    <div class="brand">
+      <img class="brand-primary" src="images/logo-primary.png" alt="Bangkok Brain Imaging Symposium (B-BIS)" height="40">
+    </div>
     <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
     <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></label>
     <div class="navlinks">
@@ -203,15 +214,16 @@
 
 <section class="hero">
   <svg class="roofline" viewBox="0 0 1200 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="0,160 0,90 120,40 240,90 240,160" fill="#221E33"/>
-    <polygon points="220,160 220,70 380,10 540,70 540,160" fill="#2A2440"/>
-    <polygon points="520,160 520,95 640,50 760,95 760,160" fill="#221E33"/>
-    <polygon points="740,160 740,65 900,5 1060,65 1060,160" fill="#2A2440"/>
-    <polygon points="1040,160 1040,90 1160,45 1200,60 1200,160" fill="#221E33"/>
+    <polygon points="0,160 0,90 120,40 240,90 240,160" fill="#0A1520"/>
+    <polygon points="220,160 220,70 380,10 540,70 540,160" fill="#122236"/>
+    <polygon points="520,160 520,95 640,50 760,95 760,160" fill="#0A1520"/>
+    <polygon points="740,160 740,65 900,5 1060,65 1060,160" fill="#122236"/>
+    <polygon points="1040,160 1040,90 1160,45 1200,60 1200,160" fill="#0A1520"/>
   </svg>
   <div class="hero-content">
+    <img class="hero-mark" src="images/logo-reverse.png" alt="Bangkok Brain Imaging Symposium — B-BIS" width="300" height="118">
     <div class="kicker">Faculty of Medicine · Chulalongkorn University</div>
-    <h1>Bangkok Brain Bridge 2027</h1>
+    <h1 class="sr-only">Bangkok Brain Imaging Symposium</h1>
     <div class="sub">From Brain Image Acquisition to Neurointervention</div>
     <div class="dates">29–30 January 2027 · Free Admission</div>
     <div class="venue-line">
@@ -300,24 +312,31 @@
 <section id="agenda">
   <div class="wrap">
     <div class="eyebrow">Agenda</div>
-    <h2 class="section-title">Program details are still being finalized</h2>
-    <p class="section-desc">Session times below are placeholders and will be updated as the schedule is confirmed.</p>
+    <h2 class="section-title">Day 1 programme confirmed</h2>
+    <p class="section-desc">Day 2 workshop times below are placeholders and will be updated as the schedule is confirmed.</p>
     <div class="agenda-grid">
       <div class="agenda-col">
         <h3>Fri 29 Jan — Symposium</h3>
-        <div class="slot"><span class="time">09:00</span><span>Registration &amp; opening remarks</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">09:30</span><span>Keynote — M. Glasser</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">11:00</span><span>Keynote — B.T.T. Yeo</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">13:30</span><span>Keynote — R. Cash</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">15:00</span><span>Panel discussion</span><span class="tbd">TBD</span></div>
+        <div class="slot break"><span class="time">08:00–08:30</span><div class="session"><div class="title">Registration &amp; Welcome Coffee</div></div></div>
+        <div class="slot"><span class="time">08:30–09:00</span><div class="session"><div class="title">Welcome Address &amp; Siemens Talk</div><div class="speaker">Dr. Wiboon (PMU-B), Chaipat Chunharas, Siemens Speaker</div></div></div>
+        <div class="slot keynote"><span class="time">09:00–10:00</span><div class="session"><div class="title">Keynote 1</div><div class="speaker">Matthew Glasser</div></div></div>
+        <div class="slot break"><span class="time">10:00–10:10</span><div class="session"><div class="title">Break</div></div></div>
+        <div class="slot keynote"><span class="time">10:10–12:00</span><div class="session"><div class="title">Keynote 2 &amp; Keynote 3</div><div class="speaker">Thomas Yeo, Robin Cash</div></div></div>
+        <div class="slot break"><span class="time">12:00–13:00</span><div class="session"><div class="title">Lunch</div></div></div>
+        <div class="slot"><span class="time">13:00–14:10</span><div class="session"><div class="title">Oral Session 1</div><div class="speaker">Chaipat Chunharas, Setthanan Jarukasemkit, Sasin Treeratana, TBC</div></div></div>
+        <div class="slot break"><span class="time">14:10–14:25</span><div class="session"><div class="title">Afternoon Break</div></div></div>
+        <div class="slot"><span class="time">14:25–15:40</span><div class="session"><div class="title">Oral Session 2</div><div class="speaker">Invited Speakers (TBC)</div></div></div>
+        <div class="slot break"><span class="time">15:40–15:50</span><div class="session"><div class="title">Short Break</div></div></div>
+        <div class="slot"><span class="time">15:50–16:40</span><div class="session"><div class="title">Round Table</div><div class="speaker">Glasser / Yeo / Cash (Chair: Chaipat)</div></div></div>
+        <div class="slot"><span class="time">16:40–16:45</span><div class="session"><div class="title">Closing Remarks</div><div class="speaker">PMU-B / Siemens</div></div></div>
       </div>
       <div class="agenda-col">
         <h3>Sat 30 Jan — Workshop</h3>
-        <div class="slot"><span class="time">09:00</span><span>Workshop check-in</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">09:30</span><span>Session I</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">11:30</span><span>Session II</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">14:00</span><span>Hands-on practicum</span><span class="tbd">TBD</span></div>
-        <div class="slot"><span class="time">16:00</span><span>Closing</span><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">09:00</span><div class="session"><div class="title">Workshop check-in</div></div><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">09:30</span><div class="session"><div class="title">Session I</div></div><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">11:30</span><div class="session"><div class="title">Session II</div></div><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">14:00</span><div class="session"><div class="title">Hands-on practicum</div></div><span class="tbd">TBD</span></div>
+        <div class="slot"><span class="time">16:00</span><div class="session"><div class="title">Closing</div></div><span class="tbd">TBD</span></div>
       </div>
     </div>
   </div>
