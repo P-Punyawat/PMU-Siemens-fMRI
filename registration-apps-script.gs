@@ -25,6 +25,12 @@
 
 var HEADERS = ['Timestamp', 'Name', 'Email', 'Affiliation', 'Dietary', 'Sessions', 'Notified'];
 
+// MailApp.sendEmail's 3-arg form always sends from whichever account
+// executes the script, ignoring any "send mail as" alias — the `from` must
+// be passed explicitly, and only works if it's already a verified alias on
+// the executing account (set up per DOMAIN_SETUP.md Section 2 Option B).
+var FROM_OPTIONS = { name: 'B-BIS Organizing Team', from: 'info@bangkokbrainimaging.org' };
+
 // Note: the browser can't read this response at all — Apps Script web apps
 // don't send CORS headers, so index.html submits with fetch's no-cors mode
 // and always shows "success" regardless of what happens here. That means
@@ -98,7 +104,7 @@ function sendConfirmationEmail(name, email) {
     "This confirms we've received your pre-registration of interest — it's not a confirmed ticket. " +
     "We'll email you again as soon as full registration opens.\n\n" +
     'Best,\nB-BIS Organizing Team';
-  MailApp.sendEmail(email, subject, body);
+  MailApp.sendEmail(email, subject, body, FROM_OPTIONS);
 }
 
 // Run this manually from the editor (function dropdown > authorizeMailApp >
@@ -129,7 +135,7 @@ function sendAnnouncementToAll() {
       '[Add registration link/instructions here before running this function.]\n\n' +
       'Best,\nB-BIS Organizing Team';
 
-    MailApp.sendEmail(email, subject, body);
+    MailApp.sendEmail(email, subject, body, FROM_OPTIONS);
     sheet.getRange(i + 1, 7).setValue(true); // mark Notified
   }
 }
