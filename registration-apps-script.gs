@@ -25,28 +25,57 @@
 
 var HEADERS = ['Timestamp', 'Name', 'Email', 'Affiliation', 'Dietary', 'Sessions', 'Notified'];
 
+// Note: the browser can't read this response at all — Apps Script web apps
+// don't send CORS headers, so index.html submits with fetch's no-cors mode
+// and always shows "success" regardless of what happens here. That means
+// failures below are invisible to the submitter by platform limitation, not
+// by choice. The two things we CAN do: never let a failure here lose data
+// that already made it into the sheet, and log every failure to the Errors
+// sheet so it's visible to an organizer auditing the spreadsheet.
 function doPost(e) {
-  var sheet = getRegistrationsSheet();
-  var params = e.parameter;
-  var sessions = e.parameters['session'] ? e.parameters['session'].join(', ') : '';
+  var params = (e && e.parameter) || {};
+  try {
+    var sheet = getRegistrationsSheet();
+    var sessions = e.parameters['session'] ? e.parameters['session'].join(', ') : '';
 
-  sheet.appendRow([
-    new Date(),
-    params.name || '',
-    params.email || '',
-    params.affiliation || '',
-    params.dietary || '',
-    sessions,
-    false
-  ]);
+    sheet.appendRow([
+      new Date(),
+      params.name || '',
+      params.email || '',
+      params.affiliation || '',
+      params.dietary || '',
+      sessions,
+      false
+    ]);
 
-  if (params.email) {
-    sendConfirmationEmail(params.name, params.email);
+    if (params.email) {
+      try {
+        sendConfirmationEmail(params.name, params.email);
+      } catch (emailErr) {
+        // Registration is already saved above — a failed confirmation email
+        // (e.g. daily MailApp quota) must not look like a lost registration.
+        logError('sendConfirmationEmail', emailErr, params);
+      }
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'success' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    logError('doPost', err, params);
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'error', message: String(err) }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
+}
 
-  return ContentService
-    .createTextOutput(JSON.stringify({ result: 'success' }))
-    .setMimeType(ContentService.MimeType.JSON);
+function logError(where, err, params) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Errors');
+  if (!sheet) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Errors');
+    sheet.appendRow(['Timestamp', 'Where', 'Error', 'Name', 'Email']);
+  }
+  sheet.appendRow([new Date(), where, String(err), params.name || '', params.email || '']);
 }
 
 function getRegistrationsSheet() {
